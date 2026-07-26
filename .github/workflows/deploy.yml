@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
+# 部署走 Vercel；此 workflow 保留为 GitHub Pages 备用方案。
+# 如需启用：仓库 Settings → Pages → Source 选 GitHub Actions，再手动运行本 workflow
+# （或把下面的 on: 加回 push 触发）。
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
