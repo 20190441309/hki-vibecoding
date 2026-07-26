@@ -34,7 +34,22 @@ export function getProjectContent(slug) {
   return { meta: data, content }
 }
 
+// GitHub-style slug，兼容中文标题，供页内目录锚点跳转使用
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
 export async function markdownToHtml(markdown) {
   const result = await remark().use(html).process(markdown)
-  return result.toString()
+  return result.toString().replace(
+    /<(h[23])>([\s\S]*?)<\/\1>/g,
+    (match, tag, inner) => {
+      const text = inner.replace(/<[^>]+>/g, '')
+      return `<${tag} id="${slugify(text)}">${inner}</${tag}>`
+    }
+  )
 }

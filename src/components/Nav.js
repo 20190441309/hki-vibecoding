@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import styles from './Nav.module.css'
 
 const links = [
+  { href: '/guide', label: '指南' },
   { href: '/workflow', label: '工作流' },
   { href: '/tools', label: '工具' },
   { href: '/insights', label: '心得' },
