@@ -90,3 +90,34 @@
   border-top: 1px solid var(--border-cream);
   margin: 32px 0;
 }
+
+.content table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  line-height: 1.7;
+  display: block;
+  overflow-x: auto;
+}
+
+.content th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--bg-warm-sand);
+  color: var(--text-primary);
+  font-weight: 600;
+  border: 1px solid var(--border-warm);
+  white-space: nowrap;
+}
+
+.content td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-warm);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.content tbody tr:nth-child(even) {
+  background: var(--bg-ivory);
+}
