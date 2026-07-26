@@ -1,37 +1,109 @@
 .hero {
-  text-align: center;
-  padding: 60px 24px 48px;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 max(32px, 6vw) 80px;
+  margin-top: -57px; /* 抵消 sticky nav 高度，让 100svh 从视口顶算起 */
+}
+
+.kicker {
+  margin-bottom: var(--space-4);
 }
 
 .title {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 32px;
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
   font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  line-height: 1.25;
-  letter-spacing: -0.5px;
-  margin-bottom: 10px;
+  max-width: 14em;
 }
 
-.subtitle {
-  font-size: 15px;
+.em {
+  font-style: normal;
+  color: var(--accent-terracotta);
+}
+
+.typeRow {
+  margin-top: var(--space-4);
+  min-height: 24px;
+}
+
+.evidence {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.evidenceItem {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.evidenceNum {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--accent-terracotta);
+  letter-spacing: 0;
+}
+
+.evidenceDot {
+  color: var(--text-tertiary);
+}
+
+.ctaRow {
+  margin-top: var(--space-5);
 }
 
 .cta {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 14px 32px;
   background: var(--accent-terracotta);
   color: var(--bg-ivory);
-  border-radius: var(--radius-md);
-  font-size: 14px;
+  border-radius: 999px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background var(--dur-fast) var(--ease-out);
 }
 
 .cta:hover {
   background: #b85a3d;
   text-decoration: none;
+}
+
+.corner {
+  position: absolute;
+  bottom: var(--space-4);
+}
+
+.cornerLeft {
+  left: max(32px, 6vw);
+}
+
+.cornerRight {
+  right: max(32px, 6vw);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-bottom: 96px;
+  }
+
+  .evidence {
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+  }
 }

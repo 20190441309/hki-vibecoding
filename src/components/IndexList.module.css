@@ -1,0 +1,110 @@
+.list {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.row {
+  border-bottom: 1px solid var(--border-light);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* 兄弟变暗：hover 某行，其余行退后 */
+.list:hover .row:not(:hover) {
+  opacity: 0.4;
+}
+
+.rowLink {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.rowLink:hover {
+  text-decoration: none;
+  transform: translateX(12px);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta-text);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.rowLink:hover .title {
+  color: var(--accent-terracotta);
+}
+
+.rowMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  text-align: right;
+}
+
+.arrow {
+  color: var(--accent-terracotta-text);
+}
+
+/* 悬停浮图：fixed 定位，gsap quickTo 驱动 x/y */
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 160px;
+  pointer-events: none;
+  z-index: calc(var(--z-nav) - 1);
+  opacity: 0;
+  scale: 0.92;
+  transition:
+    opacity 0.25s var(--ease-out),
+    scale 0.25s var(--ease-out);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-warm);
+  box-shadow: 0 16px 40px rgba(20, 20, 19, 0.18);
+}
+
+.on {
+  opacity: 1;
+  scale: 1;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0;
+  filter: sepia(8%) saturate(105%);
+}
+
+@media (max-width: 640px) {
+  .rowLink {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .rowMeta {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .preview {
+    display: none;
+  }
+}

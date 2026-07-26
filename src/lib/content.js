@@ -35,6 +35,27 @@ export function getProjectContent(slug) {
   return { meta: data, content }
 }
 
+// 构建期站点统计（Hero 证据行用，不手写数字）
+export function getSiteStats() {
+  const articleSlugs = ['guide', 'workflow', 'tools', 'insights']
+  const projects = getProjectList()
+  let chars = 0
+  const countFile = (p) => {
+    const { content } = matter(fs.readFileSync(p, 'utf8'))
+    chars += (content.match(/[一-鿿]/g) || []).length
+  }
+  for (const slug of articleSlugs) {
+    const p = path.join(contentDir, `${slug}.md`)
+    if (fs.existsSync(p)) countFile(p)
+  }
+  for (const proj of projects) countFile(path.join(contentDir, 'projects', `${proj.slug}.md`))
+  return {
+    articles: articleSlugs.length,
+    projects: projects.length,
+    wan: Math.max(1, Math.round(chars / 10000)),
+  }
+}
+
 // GitHub-style slug，兼容中文标题，供页内目录锚点跳转使用
 function slugify(text) {
   return text
