@@ -23,6 +23,13 @@
   （Reveal/Footer 入场改 GSAP 或 CSS 实现），全站单动效库（GSAP），省 ~25KB
 - creative 页专属代码（P4）必须 dynamic 分包，不计入首页
 
+## P1+P2 更新（2026-07-26 晚）
+
+- 移除 framer-motion 后首页 JS：**236.0 KB gzip**（P1 目标 ≤240KB 达成；全站单动效库 GSAP）
+- 帘转场/后退不播帘/sticky footer/悬停浮图/404 均经无头浏览器验收（截图存档 scratchpad wow-*.png）
+- 悬停浮图素材：6 张 960×640 JPEG（sips 压缩，共 ~700KB，仅桌面端预加载）
+- Windows 中文衬线：采用临时方案 (c)——serif 栈显式回落 Microsoft YaHei；思源宋体标题子集化列 P2.5 待办
+
 ## 其余验收项
 
 - 对比度：`node scripts/contrast-audit.mjs` 全部 PASS（21/21，见 docs/contrast-audit.md）
