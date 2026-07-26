@@ -1,3 +1,13 @@
+/* 品牌等宽字体：可变字重 400-700，仅拉丁+箭头+制表符区间，汉字回落系统黑体 */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jbm-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  unicode-range: U+0000-00FF, U+2010-2027, U+2190-21FF, U+2500-257F;
+  font-display: swap;
+  size-adjust: 104%;
+}
+
 /* Claude 暖色调配色体系 */
 :root {
   --bg-parchment: #f5f4ed;
