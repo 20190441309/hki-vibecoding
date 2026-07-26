@@ -7,13 +7,69 @@
   --accent-coral: #d97757;
   --text-primary: #141413;
   --text-secondary: #5e5d59;
-  --text-tertiary: #87867f;
+  --text-tertiary: #82817a; /* P0 定稿：大字/装饰专用，≥3.0:1 全底色达标（见 docs/contrast-audit.md） */
   --text-on-dark: #b0aea5;
   --border-cream: #f0eee6;
   --border-warm: #e8e6dc;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+
+  /* 间距刻度 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 160px;
+
+  /* 动效签名（全站唯一来源，禁止散写数值；JS 侧同值见 src/lib/motion.js） */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 600ms;
+  --dur-reveal: 900ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* z-index 刻度 */
+  --z-content: 1;
+  --z-nav: 100;
+  --z-veil: 200;
+  --z-noise: 300;
+
+  /* 字号刻度 */
+  --text-label: 13px;
+  --text-body: 18px;
+  --text-h3: 22px;
+  --text-h2: clamp(28px, 3.5vw, 40px);
+  --text-h1: clamp(36px, 5vw, 56px);
+  --text-hero: clamp(44px, 8vw, 104px);
+
+  /* 补充色（小字强调专用深陶土，≥4.5:1，见 docs/contrast-audit.md） */
+  --border-light: rgba(20, 20, 19, 0.08);
+  --accent-terracotta-text: #a8492a;
+
+  /* 字体栈（中文零下载策略，见规格 §四） */
+  --font-serif: Georgia, 'Times New Roman', 'Songti SC', STSong, 'Noto Serif CJK SC', serif;
+  --font-body: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+/* 暖暗色映射：P0 只定义，P4 随 ThemeToggle 开启（不接 prefers-color-scheme） */
+:root[data-theme='dark'] {
+  --bg-parchment: #221a14;
+  --bg-ivory: #2a211b;
+  --bg-warm-sand: #33281f;
+  --text-primary: #ece7df;
+  --text-secondary: #b8b0a4;
+  --text-tertiary: #8a8175;
+  --accent-terracotta: #d97757;
+  --border-cream: rgba(236, 231, 223, 0.08);
+  --border-warm: rgba(236, 231, 223, 0.12);
+  --border-light: rgba(236, 231, 223, 0.06);
+  color-scheme: dark;
 }
 
 * {
@@ -22,14 +78,10 @@
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: var(--bg-parchment);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -52,4 +104,23 @@ img {
 ::selection {
   background: var(--accent-terracotta);
   color: var(--bg-ivory);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-terracotta);
+  outline-offset: 2px;
+}
+
+/* mono 元数据系统：编号/日期/标签/路径/快捷键/页码 统一走 .meta */
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.meta em {
+  color: var(--accent-terracotta-text);
+  font-style: normal;
 }
