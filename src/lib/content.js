@@ -1,9 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
-import html from 'remark-html'
+import remarkRehype from 'remark-rehype'
+import rehypeRaw from 'rehype-raw'
+import rehypeStringify from 'rehype-stringify'
+import rehypeShiki from '@shikijs/rehype'
+import { transformerMetaHighlight } from '@shikijs/transformers'
 
 const contentDir = path.join(process.cwd(), 'content')
 
@@ -12,7 +17,13 @@ export function getPageContent(slug) {
   if (!fs.existsSync(fullPath)) return null
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
-  return { meta: data, content }
+  const cjk = (content.match(/[一-鿿]/g) || []).length
+  return {
+    meta: data,
+    content,
+    charCount: cjk,
+    readingMinutes: Math.max(1, Math.round(cjk / 400)),
+  }
 }
 
 export function getProjectList() {
@@ -65,13 +76,89 @@ function slugify(text) {
     .replace(/\s+/g, '-')
 }
 
-export async function markdownToHtml(markdown) {
-  const result = await remark().use(remarkGfm).use(html).process(markdown)
-  return result.toString().replace(
-    /<(h[23])>([\s\S]*?)<\/\1>/g,
-    (match, tag, inner) => {
-      const text = inner.replace(/<[^>]+>/g, '')
-      return `<${tag} id="${slugify(text)}">${inner}</${tag}>`
+const textOf = (node) => {
+  if (node.type === 'text') return node.value
+  return (node.children || []).map(textOf).join('')
+}
+
+// 文章加工插件：标题锚点、H2 章节编号、*强调* → 着重号、提取 TOC
+function rehypeArticle({ toc }) {
+  return (tree) => {
+    let chapter = 0
+    const walk = (node) => {
+      if (node.type === 'element') {
+        if (node.tagName === 'h2' || node.tagName === 'h3') {
+          const text = textOf(node).trim()
+          node.properties = node.properties || {}
+          node.properties.id = node.properties.id || slugify(text)
+          if (node.tagName === 'h2' && text !== '目录') {
+            chapter += 1
+            const num = String(chapter).padStart(2, '0')
+            node.children.unshift({
+              type: 'element',
+              tagName: 'span',
+              properties: { className: ['chapNum'], 'aria-hidden': 'true' },
+              children: [{ type: 'text', value: `${num} / ` }],
+            })
+            toc?.push({ id: node.properties.id, text, num })
+          }
+        }
+        if (node.tagName === 'em') {
+          node.properties = node.properties || {}
+          const cls = node.properties.className || []
+          node.properties.className = [...cls, 'dot']
+        }
+      }
+      ;(node.children || []).forEach(walk)
     }
-  )
+    walk(tree)
+  }
+}
+
+// Shiki 暖色主题：与站点色板同源（深褐底 / 琥珀字符串 / 陶土关键字）
+const warmTheme = {
+  name: 'hki-warm',
+  type: 'dark',
+  colors: {
+    'editor.background': '#2a211b',
+    'editor.foreground': '#ece7df',
+  },
+  tokenColors: [
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#87867f' } },
+    { scope: ['string', 'string.quoted'], settings: { foreground: '#d9a05b' } },
+    { scope: ['keyword', 'storage.type', 'storage.modifier'], settings: { foreground: '#d97757' } },
+    { scope: ['entity.name.function', 'support.function'], settings: { foreground: '#e0b184' } },
+    { scope: ['constant.numeric', 'constant.language', 'variable.other.constant'], settings: { foreground: '#d9a05b' } },
+    { scope: ['entity.name.tag', 'punctuation.definition.tag'], settings: { foreground: '#d97757' } },
+    { scope: ['variable', 'entity.name'], settings: { foreground: '#ece7df' } },
+  ],
+}
+
+async function runPipeline(markdown, toc) {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeArticle, { toc })
+    .use(rehypeShiki, {
+      theme: warmTheme,
+      fallbackLanguage: 'text',
+      transformers: [transformerMetaHighlight()],
+    })
+    .use(rehypeStringify)
+    .process(markdown)
+  return result.toString()
+}
+
+// 文章渲染：返回 html 与 TOC（H2 级，含章节编号）
+export async function renderArticle(markdown) {
+  const toc = []
+  const html = await runPipeline(markdown, toc)
+  return { html, toc }
+}
+
+export async function markdownToHtml(markdown) {
+  const { html } = await renderArticle(markdown)
+  return html
 }
