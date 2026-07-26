@@ -1,0 +1,50 @@
+.page {
+  padding: 40px 0 80px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-cream);
+}
+
+.back:hover {
+  color: var(--accent-terracotta);
+  text-decoration: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.headerIcon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.headerTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.headerDate {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-secondary);
+}
