@@ -30,6 +30,13 @@
 - 悬停浮图素材：6 张 960×640 JPEG（sips 压缩，共 ~700KB，仅桌面端预加载）
 - Windows 中文衬线：采用临时方案 (c)——serif 栈显式回落 Microsoft YaHei；思源宋体标题子集化列 P2.5 待办
 
+## P3 更新（2026-07-26 深夜）
+
+- rehype 管线迁移完成（unified + remark-gfm + rehype-raw + Shiki），全部为构建期依赖，首页 JS 稳定在 **235.6 KB**
+- 阅读页：三栏 sticky TOC（IO 高亮 + lenis.scrollTo 落位 -90px 实测精准）、CSS 滚动进度条、章节编号、首字下沉、datasheet 表格、代码块暖色高亮 + 复制按钮
+- 项目区：↑↓/Enter 键盘导航实测通过；详情页 frontmatter 驱动 datasheet 参数表
+- RSS：构建前置钩子生成 rss.xml（7 条），head 已挂 alternate；打印样式已加
+
 ## 其余验收项
 
 - 对比度：`node scripts/contrast-audit.mjs` 全部 PASS（21/21，见 docs/contrast-audit.md）

@@ -3,6 +3,11 @@ title: "与 AI 结对写《Vibe Coding 完全指南》"
 date: "2026-07-26"
 icon: "📖"
 summary: "五章 + 附录的完整手册：从概念、工具链、工作流到实战避坑，AI 负责整理成文，我负责经验和取舍"
+model: "Claude"
+stack: "Markdown · gray-matter"
+duration: "数次会话迭代"
+takeaway: "经验和判断不能外包，成文和资料可以"
+repo: "https://github.com/20190441309/hki-vibecoding"
 ---
 
 ## 项目背景

@@ -3,6 +3,11 @@ title: "一天建成这个网站"
 date: "2026-07-26"
 icon: "🏗️"
 summary: "计划驱动 + 原子提交：用 Claude Code 从空目录到可部署的个人主页，22 个提交，一天完成"
+model: "Claude · Claude Code"
+stack: "Next.js 16 · CSS Modules · gray-matter · remark"
+duration: "1 天 · 22 个提交"
+takeaway: "计划先行，原子提交，AI 不会跑偏"
+repo: "https://github.com/20190441309/hki-vibecoding"
 ---
 
 ## 项目背景

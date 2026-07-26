@@ -1,17 +1,21 @@
 .page {
-  padding: 40px 0 80px;
+  padding: 48px 0 96px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .back {
   display: inline-block;
-  margin-bottom: 24px;
-  font-size: 14px;
+  margin-bottom: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 6px 16px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-ivory);
-  border: 1px solid var(--border-cream);
 }
 
 .back:hover {
@@ -20,31 +24,71 @@
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: var(--space-4);
 }
 
-.headerIcon {
-  font-size: 36px;
-  display: block;
-  margin-bottom: 8px;
+.kicker {
+  margin-bottom: var(--space-3);
 }
 
 .headerTitle {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
   font-weight: 500;
+  line-height: 1.25;
   color: var(--text-primary);
 }
 
-.headerDate {
+/* datasheet 参数表 */
+.sheet {
+  margin: var(--space-5) 0 var(--space-6);
+  border: 1px solid var(--border-warm);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.sheetRow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
+
+.sheetRow + .sheetRow {
+  border-top: 1px solid var(--border-warm);
+}
+
+.sheetKey {
+  padding: 10px 14px;
+  background: var(--bg-warm-sand);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-warm);
+}
+
+.sheetVal {
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.sheetVal a {
+  font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--text-tertiary);
-  margin-top: 6px;
 }
 
 .empty {
   text-align: center;
   padding: 80px 24px;
   color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+  .sheetRow {
+    grid-template-columns: 92px 1fr;
+  }
 }

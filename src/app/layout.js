@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
         {/* 首帧打 .js 标：Reveal 的隐藏初始态只在有 JS 时生效（no-JS/爬虫直接可见） */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <link rel="preload" href="/fonts/jbm-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="alternate" type="application/rss+xml" title="HKI's VibeCoding" href="/rss.xml" />
       </head>
       <body>
         <a href="#main" className="skipLink">跳到正文</a>

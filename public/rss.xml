@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>HKI's VibeCoding</title>
+<link>https://hki-vibecoding.vercel.app</link>
+<description>用 AI 加速开发，从想法到产品——vibe coding 经验、指南与案例</description>
+<language>zh-cn</language>
+<item>
+<title>Vibe Coding 完全指南</title>
+<link>https://hki-vibecoding.vercel.app/guide</link>
+<guid>https://hki-vibecoding.vercel.app/guide</guid>
+<description>从入门到精通的 AI 辅助编程手册：概念、工具链、核心工作流、实战避坑与进阶</description>
+</item>
+<item>
+<title>AI 工作流</title>
+<link>https://hki-vibecoding.vercel.app/workflow</link>
+<guid>https://hki-vibecoding.vercel.app/workflow</guid>
+<description>AI 工作流</description>
+</item>
+<item>
+<title>工具链</title>
+<link>https://hki-vibecoding.vercel.app/tools</link>
+<guid>https://hki-vibecoding.vercel.app/tools</guid>
+<description>工具链</description>
+</item>
+<item>
+<title>经验心得</title>
+<link>https://hki-vibecoding.vercel.app/insights</link>
+<guid>https://hki-vibecoding.vercel.app/insights</guid>
+<description>经验心得</description>
+</item>
+<item>
+<title>与 AI 结对写《Vibe Coding 完全指南》</title>
+<link>https://hki-vibecoding.vercel.app/projects/guide-writing</link>
+<guid>https://hki-vibecoding.vercel.app/projects/guide-writing</guid>
+<description>五章 + 附录的完整手册：从概念、工具链、工作流到实战避坑，AI 负责整理成文，我负责经验和取舍</description>
+<pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+<title>动效升级实战：从规划稿到 Awwwards 级微交互</title>
+<link>https://hki-vibecoding.vercel.app/projects/motion-upgrade</link>
+<guid>https://hki-vibecoding.vercel.app/projects/motion-upgrade</guid>
+<description>先写视觉动效设计规划稿，再让 AI 分三步实现玻璃拟态导航、磁吸按钮、平滑滚动和页面过渡</description>
+<pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+<title>一天建成这个网站</title>
+<link>https://hki-vibecoding.vercel.app/projects/site-build</link>
+<guid>https://hki-vibecoding.vercel.app/projects/site-build</guid>
+<description>计划驱动 + 原子提交：用 Claude Code 从空目录到可部署的个人主页，22 个提交，一天完成</description>
+<pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 // 给正文里的每个代码块补一键复制按钮（构建期 HTML 不含交互，挂载后装饰）
 export default function CopyCode() {
   useEffect(() => {
-    const pres = document.querySelectorAll('main article pre')
+    const pres = document.querySelectorAll('main pre')
     const buttons = []
     pres.forEach((pre) => {
       if (pre.querySelector('[data-copy]')) return

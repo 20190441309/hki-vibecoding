@@ -3,6 +3,11 @@ title: "动效升级实战：从规划稿到 Awwwards 级微交互"
 date: "2026-07-26"
 icon: "🎬"
 summary: "先写视觉动效设计规划稿，再让 AI 分三步实现玻璃拟态导航、磁吸按钮、平滑滚动和页面过渡"
+model: "Claude · Claude Code"
+stack: "Lenis · GSAP · framer-motion"
+duration: "半天 · 3 个提交"
+takeaway: "设计规划稿把「品味」变成可执行清单"
+repo: "https://github.com/20190441309/hki-vibecoding"
 ---
 
 ## 项目背景
