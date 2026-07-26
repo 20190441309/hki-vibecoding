@@ -1,17 +1,102 @@
+/* Sticky footer reveal：footer 钉在视口底层，主内容滚到底像掀开一页纸（依赖 main 无 transform 祖先） */
 .footer {
-  text-align: center;
-  padding: 32px 24px;
-  border-top: 1px solid var(--border-warm);
-  color: var(--text-tertiary);
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+  background: var(--bg-warm-sand);
+}
+
+.marquee {
+  overflow: hidden;
+  background: var(--accent-terracotta);
+  padding: 10px 0;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.seg {
+  font-family: var(--font-mono);
   font-size: 13px;
-  margin-top: 80px;
+  letter-spacing: 0.08em;
+  color: var(--bg-ivory);
+  white-space: pre;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-6) max(24px, 4vw) var(--space-4);
+}
+
+.kicker {
+  margin-bottom: var(--space-3);
+}
+
+.bigRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.big {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 8vw, 96px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.circleCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: var(--accent-terracotta);
+  color: var(--bg-ivory);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.circleCta:hover {
+  background: #b85a3d;
+  text-decoration: none;
+}
+
+.status {
+  margin-top: var(--space-4);
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
 }
 
 .socials {
   display: flex;
-  gap: 24px;
-  justify-content: center;
-  margin-bottom: 16px;
+  gap: var(--space-3);
 }
 
 .socialLink {
@@ -21,7 +106,10 @@
   padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid var(--border-warm);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .socialLink:hover {
@@ -31,6 +119,16 @@
   text-decoration: none;
 }
 
-.copy {
-  margin: 0;
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .circleCta {
+    width: 104px;
+    height: 104px;
+    font-size: 14px;
+  }
 }

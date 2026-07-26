@@ -62,7 +62,8 @@
   --accent-terracotta-text: #a8492a;
 
   /* 字体栈（中文零下载策略，见规格 §四） */
-  --font-serif: Georgia, 'Times New Roman', 'Songti SC', STSong, 'Noto Serif CJK SC', serif;
+  /* Windows 无可用多字重中文衬线（SimSun 单字重发虚），显式回落雅黑——衬线子集字体列 P2.5 待办 */
+  --font-serif: Georgia, 'Times New Roman', 'Songti SC', STSong, 'Noto Serif CJK SC', 'Microsoft YaHei', serif;
   --font-body: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
 }
@@ -94,6 +95,13 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* 主内容压在 sticky footer 之上，滚到底“掀纸”露出页脚 */
+main {
+  position: relative;
+  z-index: var(--z-content);
+  background: var(--bg-parchment);
 }
 
 a {
