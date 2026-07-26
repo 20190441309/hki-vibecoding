@@ -1,5 +1,5 @@
-import { getPageContent, markdownToHtml } from '@/lib/content'
-import MarkdownRenderer from '@/components/MarkdownRenderer'
+import { getPageContent, renderArticle } from '@/lib/content'
+import ArticleLayout from '@/components/ArticleLayout'
 import styles from './page.module.css'
 
 export const metadata = {
@@ -10,11 +10,14 @@ export const metadata = {
 export default async function InsightsPage() {
   const data = getPageContent('insights')
   if (!data) return <div className={styles.empty}>内容编写中...</div>
-  const html = await markdownToHtml(data.content)
+  const { html, toc } = await renderArticle(data.content)
   return (
-    <div className={styles.page}>
-      <h1 className={styles.title}>{data.meta.icon} {data.meta.title}</h1>
-      <MarkdownRenderer html={html} />
-    </div>
+    <ArticleLayout
+      kicker="INSIGHTS / 04"
+      title={data.meta.title}
+      minutes={data.readingMinutes}
+      toc={toc}
+      html={html}
+    />
   )
 }

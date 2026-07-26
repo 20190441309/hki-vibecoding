@@ -164,6 +164,49 @@ html.js .pageEnter {
   top: var(--space-3);
 }
 
+/* 代码块复制按钮（CopyCode 客户端注入的全局类） */
+.copyBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-on-dark);
+  background: rgba(236, 231, 223, 0.08);
+  border: 1px solid rgba(236, 231, 223, 0.15);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+pre:hover .copyBtn,
+.copyBtn:focus-visible {
+  opacity: 1;
+}
+
+.copyBtn:hover {
+  background: rgba(236, 231, 223, 0.16);
+}
+
+@media print {
+  nav,
+  footer,
+  .skipLink,
+  .copyBtn,
+  [class*='NoiseOverlay'],
+  [class*='ProgressBar'],
+  [class*='TransitionVeil'] {
+    display: none !important;
+  }
+
+  main {
+    background: #fff;
+  }
+}
+
 /* mono 元数据系统：编号/日期/标签/路径/快捷键/页码 统一走 .meta */
 .meta {
   font-family: var(--font-mono);

@@ -1,9 +1,37 @@
 .content {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 24px;
   font-size: var(--text-body);
   color: var(--text-primary);
+}
+
+/* 首段下沉首字（衬线陶土红） */
+.content > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 2.6em;
+  line-height: 1;
+  color: var(--accent-terracotta);
+  float: left;
+  padding: 4px 8px 0 0;
+}
+
+/* 章节编号（管线注入的 .chapNum） */
+.content :global(.chapNum) {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--accent-terracotta-text);
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: 4px;
+}
+
+/* *强调* → 着重号 */
+.content :global(em.dot) {
+  font-style: normal;
+  text-emphasis: filled dot var(--accent-terracotta);
+  -webkit-text-emphasis: filled dot var(--accent-terracotta);
 }
 
 .content h1 {
@@ -15,13 +43,21 @@
 }
 
 .content h2 {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 22px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
   font-weight: 500;
-  margin: 32px 0 10px;
+  margin: var(--space-7) 0 var(--space-4);
   line-height: 1.3;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-cream);
+}
+
+/* 章节顶部 24px 陶土短线 */
+.content h2::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent-terracotta);
+  margin-bottom: var(--space-3);
 }
 
 .content h3 {
@@ -67,17 +103,27 @@
 }
 
 .content pre {
-  background: var(--text-primary);
+  position: relative;
+  background: #2a211b; /* 与 Shiki 暖色主题同底，无高亮语言时也一致 */
   padding: 20px;
   border-radius: var(--radius-md);
   overflow-x: auto;
   margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.75;
 }
 
 .content pre code {
   background: transparent;
   color: var(--text-on-dark);
   padding: 0;
+}
+
+/* Shiki 行高亮（```js {2-3}``` 语法） */
+.content pre :global(.highlighted) {
+  display: inline-block;
+  width: 100%;
+  background: rgba(217, 119, 87, 0.14);
 }
 
 .content img {
@@ -91,11 +137,12 @@
   margin: 32px 0;
 }
 
+/* datasheet 风格表格（U.S. Graphics）：mono 表头、细边框、高密度 */
 .content table {
   width: 100%;
   margin: 20px 0;
   border-collapse: collapse;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.7;
   display: block;
   overflow-x: auto;
@@ -103,10 +150,14 @@
 
 .content th {
   text-align: left;
-  padding: 10px 14px;
+  padding: 8px 14px;
   background: var(--bg-warm-sand);
   color: var(--text-primary);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   border: 1px solid var(--border-warm);
   white-space: nowrap;
 }

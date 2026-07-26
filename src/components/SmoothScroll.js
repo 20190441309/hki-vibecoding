@@ -23,9 +23,12 @@ export default function SmoothScroll({ children }) {
     const tick = (time) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
     gsap.ticker.lagSmoothing(0)
+    // 供 TOC 等页内锚点组件调用（带 nav 偏移的平滑定位）
+    window.__lenis = lenis
 
     return () => {
       gsap.ticker.remove(tick)
+      delete window.__lenis
       lenis.destroy()
     }
   }, [])

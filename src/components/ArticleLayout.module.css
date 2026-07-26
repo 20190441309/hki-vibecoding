@@ -1,0 +1,68 @@
+.page {
+  padding: 48px 0 96px;
+}
+
+.header {
+  max-width: 1128px;
+  margin: 0 auto var(--space-6);
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.kicker {
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.aside {
+  display: none;
+}
+
+.gutter {
+  display: none;
+}
+
+.article {
+  min-width: 0;
+}
+
+/* 1080–1200：两栏（TOC + 正文） */
+@media (min-width: 1080px) {
+  .grid {
+    grid-template-columns: 200px minmax(0, 680px);
+    justify-content: center;
+    gap: 48px;
+  }
+
+  .aside {
+    display: block;
+  }
+}
+
+/* ≥1200：三栏（TOC | 正文 | 留白），实算 200+680+160+2×48 = 1136 < 1200 */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: 200px minmax(0, 680px) 160px;
+  }
+
+  .gutter {
+    display: block;
+  }
+}
