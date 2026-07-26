@@ -9,6 +9,7 @@ export default function Magnetic({ children, strength = 0.35 }) {
   useEffect(() => {
     const el = magnetic.current
     if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const xTo = gsap.quickTo(el, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' })
     const yTo = gsap.quickTo(el, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' })

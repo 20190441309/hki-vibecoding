@@ -17,9 +17,14 @@ const script = [
 export default function TerminalTyping() {
   const [lines, setLines] = useState([])
   const [current, setCurrent] = useState('')
+  const [reduced, setReduced] = useState(false)
   const state = useRef({ line: 0, char: 0 })
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setReduced(true)
+      return
+    }
     let timer
     const tick = () => {
       const { line, char } = state.current
@@ -57,13 +62,15 @@ export default function TerminalTyping() {
         <span className={styles.titleText}>hki@vibecoding — zsh</span>
       </div>
       <div className={styles.body}>
-        {lines.map((l, i) => (
+        {(reduced ? script : lines).map((l, i) => (
           <div key={i} className={`${styles.line} ${styles[l.cls]}`}>{l.text}</div>
         ))}
-        <div className={`${styles.line} ${styles[currentCls]}`}>
-          {current}
-          <span className={styles.cursor} />
-        </div>
+        {!reduced && (
+          <div className={`${styles.line} ${styles[currentCls]}`}>
+            {current}
+            <span className={styles.cursor} />
+          </div>
+        )}
       </div>
     </div>
   )
