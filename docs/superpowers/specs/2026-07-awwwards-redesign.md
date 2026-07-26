@@ -177,7 +177,7 @@ framer-motion 实现（不引 SplitText 省包体；中文按行 `display:block`
 
 - **skip-to-content**：`layout.js` 首个可聚焦元素为「跳到正文」链接（视觉隐藏、聚焦显形），长文站键盘用户必备。
 - `:focus-visible`：2px 陶土红 outline + 2px offset，全站统一。
-- **JS 体积预算**：P0 记录首页 gzip 传输体积基线，红线 ≤130KB；framer-motion 全站改 `LazyMotion` + `m` 组件（省约 15KB）；creative 专属代码（ScrambleText/shell/boot/CRT 光标）一律 `next/dynamic` 按路由分包。CWV 预算：LCP <2.5s（中端 Android + Fast 4G）、CLS <0.1。
+- **JS 体积预算（P0 实测勘误）**：原定红线 130KB 不可达（react-dom + Next 运行时地板 ~150KB）。P0 实测基线 263.2KB，总红线 ≤270KB，明细见 `docs/perf-baseline.md`；**P1 目标 ≤240KB——转场放弃 AnimatePresence 后整体移除 framer-motion，Reveal/Footer 入场改 GSAP 或 CSS，全站单动效库**；creative 专属代码（ScrambleText/shell/boot/CRT 光标）一律 `next/dynamic` 按路由分包。CWV 预算：LCP <2.5s（中端 Android + Fast 4G）、CLS <0.1。
 
 ### 3.1 导航（Nav 升级，不重写）
 
@@ -320,7 +320,7 @@ framer-motion 实现（不引 SplitText 省包体；中文按行 `display:block`
 | 阶段 | 内容 | 规格节 | 预估 | 验收标准 |
 |---|---|---|---|---|
 | **P0 地基** | 对比度核算表；token 扩展；单时钟 + 删 scroll-behavior；reduced-motion 分支；focus-visible + skip-link；JetBrains Mono；CJK 正文参数；NoiseOverlay（预染 PNG）；LazyMotion 改造；体积基线记录 | 3.0.1–3.0.5、3.0.8、四 | 1.5–2 天 | 除正文排版参数与噪点外无视觉回归（附前后截图对照清单）；Lighthouse a11y ≥95 且对比度零告警；首页 gzip ≤130KB 基线入档 |
-| **P1 转场与导航** | Reveal（含 .js class LCP 保护）；TransitionLink + template.js 帘转场；Nav hover 瞬切与编号；移动端菜单动画；404 页 | 3.0.6、3.0.7、3.1、3.8 | 2–2.5 天 | 路由互跳帘 ≤600ms；**后退/前进不卡帘不重播**；转场后 sticky 可用；no-JS 下所有标题可见；reduced-motion 全降级；404.html 产出正确 |
+| **P1 转场与导航** | Reveal（含 .js class LCP 保护）；TransitionLink + template.js 帘转场；**移除 framer-motion（转场/Reveal/Footer 全改 GSAP 或 CSS，全站单动效库）**；Nav hover 瞬切与编号；移动端菜单动画；404 页 | 3.0.6、3.0.7、3.1、3.8 | 2–2.5 天 | 路由互跳帘 ≤600ms；**后退/前进不卡帘不重播**；转场后 sticky 可用；no-JS 下所有标题可见；reduced-motion 全降级；404.html 产出正确；首页 JS ≤240KB |
 | **P2 首页与页脚** | Hero 重写（含标题子集字体管线）；IndexList + 浮图（含预加载）；sticky footer + marquee + colophon；OG 卡与 favicon 换新 | 3.2–3.4、四.2 | 2.5–3 天 | 首屏 3 秒记忆点自查；**中端 Android + Fast 4G 下 LCP <2.5s**；Windows Chrome 标题衬线正常（子集字体生效）；footer 掀纸三浏览器 + 微信一致；移动端浮图不挂载 |
 | **P3a 阅读版式** | rehype 管线迁移；三栏 TOC（lenis.scrollTo + hash 直达）；进度条；章节编号/着重号/首字/kicker；print 样式 | 3.5 前半 | 2–2.5 天 | 万字 guide 滚读 60fps（中端真机）；TOC 高亮/锚点/hash 直达全对；1080–1200px 无横向溢出；管线迁移后现有内容渲染零回归 |
 | **P3b 代码块与项目区** | Shiki 暖主题 + 复制/行高亮/文件名标签；datasheet 表格；项目 IndexList + 键盘导航；详情页 datasheet + 封面揭示；图片管线；RSS | 3.5 后半、3.6、3.9 | 2–2.5 天 | 代码块四件套可用；`↑↓ Enter` 全键盘走通且读屏可用；图片零 CLS |
