@@ -20,7 +20,7 @@ export default async function ProjectDetailPage({ params }) {
         <div className={styles.header}>
           <span className={styles.headerIcon}>{data.meta.icon}</span>
           <h1 className={styles.headerTitle}>{data.meta.title}</h1>
-          <div className={styles.headerDate}>{String(data.meta.date).split('T')[0]}</div>
+          <div className={styles.headerDate}>{new Date(data.meta.date).toISOString().split('T')[0]}</div>
         </div>
         <MarkdownRenderer html={html} />
       </div>
