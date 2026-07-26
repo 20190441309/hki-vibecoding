@@ -7,6 +7,16 @@ export function generateStaticParams() {
   return getProjectList().map((p) => ({ slug: p.slug }))
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const data = getProjectContent(slug)
+  if (!data) return { title: "项目不存在 | HKI's VibeCoding" }
+  return {
+    title: `${data.meta.title} | HKI's VibeCoding`,
+    description: data.meta.summary,
+  }
+}
+
 export default async function ProjectDetailPage({ params }) {
   const { slug } = await params
   const data = getProjectContent(slug)

@@ -2,6 +2,11 @@ import Link from 'next/link'
 import { getProjectList } from '@/lib/content'
 import styles from './page.module.css'
 
+export const metadata = {
+  title: "项目案例 | HKI's VibeCoding",
+  description: '用 AI 构建的项目案例：背景、过程、成果与反思',
+}
+
 export default function ProjectsPage() {
   const projects = getProjectList()
 
