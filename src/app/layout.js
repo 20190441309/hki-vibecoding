@@ -18,11 +18,12 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/fonts/jbm-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
+        <a href="#main" className="skipLink">跳到正文</a>
         <NoiseOverlay />
         <MotionProvider>
           <SmoothScroll>
             <Nav />
-            <main>
+            <main id="main">
               <PageTransition>{children}</PageTransition>
             </main>
             <Footer />

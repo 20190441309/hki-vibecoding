@@ -121,6 +121,21 @@ img {
   outline-offset: 2px;
 }
 
+.skipLink {
+  position: fixed;
+  top: -100%;
+  left: var(--space-3);
+  z-index: calc(var(--z-noise) + 1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent-terracotta);
+  color: var(--bg-ivory);
+  border-radius: var(--radius-sm);
+}
+
+.skipLink:focus-visible {
+  top: var(--space-3);
+}
+
 /* mono 元数据系统：编号/日期/标签/路径/快捷键/页码 统一走 .meta */
 .meta {
   font-family: var(--font-mono);
