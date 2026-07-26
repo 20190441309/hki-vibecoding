@@ -121,6 +121,26 @@ img {
   outline-offset: 2px;
 }
 
+/* template.js 每次导航重挂载后的入场：只动 opacity，不碰 transform（保 sticky） */
+html.js .pageEnter {
+  animation: pageFade var(--dur-base) ease both;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .pageEnter {
+    animation-duration: var(--dur-fast);
+  }
+}
+
 .skipLink {
   position: fixed;
   top: -100%;

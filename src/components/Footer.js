@@ -1,24 +1,15 @@
-'use client'
-
-import { m } from 'framer-motion'
 import Magnetic from './Magnetic'
 import styles from './Footer.module.css'
 
 const socials = [
-  { label: 'GitHub', href: 'https://github.com' },
+  { label: 'GitHub', href: 'https://github.com/20190441309' },
   { label: '掘金', href: 'https://juejin.cn' },
   { label: '知乎', href: 'https://zhihu.com' },
 ]
 
 export default function Footer() {
   return (
-    <m.footer
-      className={styles.footer}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
+    <footer className={styles.footer}>
       <div className={styles.socials}>
         {socials.map((s) => (
           <Magnetic key={s.label} strength={0.5}>
@@ -34,6 +25,6 @@ export default function Footer() {
         ))}
       </div>
       <p className={styles.copy}>© 2026 · Built with Hki</p>
-    </m.footer>
+    </footer>
   )
 }

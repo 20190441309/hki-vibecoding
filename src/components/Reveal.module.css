@@ -1,0 +1,32 @@
+.mask {
+  display: block;
+  overflow: hidden;
+}
+
+.inner {
+  display: block;
+}
+
+/* 隐藏初始态仅在 html.js 下生效——no-JS/爬虫看到完整内容 */
+:global(html.js) .mask .inner {
+  transform: translateY(110%);
+}
+
+:global(html.js) .immediate .inner,
+:global(html.js) .go .inner {
+  animation: rise var(--dur-reveal) var(--ease-out) forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .mask .inner {
+    transform: none;
+    animation: none;
+  }
+}

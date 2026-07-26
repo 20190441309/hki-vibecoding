@@ -1,0 +1,34 @@
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-veil);
+  background: var(--accent-terracotta);
+  clip-path: inset(100% 0 0 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.path {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--bg-ivory);
+}
+
+.cursor {
+  display: inline-block;
+  width: 9px;
+  height: 17px;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: var(--bg-ivory);
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
