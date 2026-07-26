@@ -1,0 +1,10 @@
+/* 预染颗粒纹理，纯 opacity 叠加——不用 mix-blend-mode（低端机滚动帧率，见规格 3.0.3） */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-noise);
+  background-image: url('/textures/noise.png');
+  background-repeat: repeat;
+  opacity: 0.05;
+}

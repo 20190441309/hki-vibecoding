@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
 import PageTransition from '@/components/PageTransition'
+import NoiseOverlay from '@/components/NoiseOverlay'
 
 export const metadata = {
   title: "HKI's VibeCoding",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/fonts/jbm-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
+        <NoiseOverlay />
         <SmoothScroll>
           <Nav />
           <main>
