@@ -31,3 +31,6 @@ next-env.d.ts
 
 # superpowers brainstorm artifacts
 .superpowers/
+
+# AI tool artifacts
+.pi-subagents/
