@@ -1,0 +1,37 @@
+.hero {
+  text-align: center;
+  padding: 60px 24px 48px;
+}
+
+.title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.cta {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--accent-terracotta);
+  color: var(--bg-ivory);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.cta:hover {
+  background: #b85a3d;
+  text-decoration: none;
+}
