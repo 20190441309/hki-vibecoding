@@ -1,0 +1,44 @@
+.card {
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 24px;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-terracotta);
+}

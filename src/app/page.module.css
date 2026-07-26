@@ -1,0 +1,44 @@
+.page {
+  padding-bottom: 48px;
+}
+
+.creative {
+  max-width: 800px;
+  margin: 40px auto 0;
+  padding: 24px;
+  text-align: center;
+  background: var(--bg-parchment);
+  border: 1px dashed rgba(201, 100, 66, 0.3);
+  border-radius: var(--radius-lg);
+}
+
+.creativeTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: var(--accent-terracotta);
+  color: var(--bg-ivory);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.chip:hover {
+  opacity: 0.85;
+  text-decoration: none;
+  color: var(--bg-ivory);
+}
