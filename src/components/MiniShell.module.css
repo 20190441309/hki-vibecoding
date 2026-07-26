@@ -1,0 +1,52 @@
+.shell {
+  border: 1px solid rgba(224, 177, 132, 0.25);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 14px 16px;
+  cursor: text;
+}
+
+.log {
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.cmd {
+  color: #ece7df;
+}
+
+.out {
+  color: rgba(224, 177, 132, 0.85);
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(224, 177, 132, 0.15);
+}
+
+.prompt {
+  color: var(--accent-coral);
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: #ece7df;
+  caret-color: #e0b184;
+}
+
+.input::placeholder {
+  color: rgba(224, 177, 132, 0.4);
+}

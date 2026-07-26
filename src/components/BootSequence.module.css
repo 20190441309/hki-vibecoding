@@ -1,0 +1,27 @@
+.boot {
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: rgba(224, 177, 132, 0.75);
+  min-height: 74px;
+}
+
+.line {
+  white-space: pre;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: #e0b184;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

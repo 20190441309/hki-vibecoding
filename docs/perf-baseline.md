@@ -37,6 +37,13 @@
 - 项目区：↑↓/Enter 键盘导航实测通过；详情页 frontmatter 驱动 datasheet 参数表
 - RSS：构建前置钩子生成 rss.xml（7 条），head 已挂 alternate；打印样式已加
 
+## P4 更新（2026-07-26 收官）
+
+- 暗色主题启用：ThemeToggle（--dark/--light）+ localStorage + prefers-color-scheme 默认 + 首帧防闪脚本；暗色下 Hero/文章/TOC/表格/进度条/毛玻璃导航全数走查通过
+- creative 暖 CRT 区：#2a211b 底 + 扫描线 + boot 序列 + 三张 EXP datasheet 卡 + 插入符光标（cursor:none 仅 pointer:fine）+ ScrambleText hover
+- mini shell 实测：help/ls/vibe/clear/sudo 彩蛋全部正确，`cd projects` 经帘转场真跳转；role="log"、聚焦才收键盘、Esc 退出
+- creative 组件走路由级代码分割，不进首页 bundle（首页 JS 不变）
+
 ## 其余验收项
 
 - 对比度：`node scripts/contrast-audit.mjs` 全部 PASS（21/21，见 docs/contrast-audit.md）

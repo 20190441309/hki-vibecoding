@@ -1,0 +1,24 @@
+.noCursor,
+.noCursor * {
+  cursor: none !important;
+}
+
+.caret {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 17px;
+  background: #e0b184;
+  opacity: 0;
+  pointer-events: none;
+  z-index: calc(var(--z-noise) + 1);
+  animation: blink 1.1s steps(2, start) infinite;
+  transition: opacity var(--dur-fast) ease;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

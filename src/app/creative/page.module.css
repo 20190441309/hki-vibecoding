@@ -1,40 +1,112 @@
+/* 工程附录：暖 CRT 区——深褐底、琥珀字、全页 mono，与主站刻意反差但色温连续 */
 .page {
-  padding: 40px 0 80px;
+  position: relative;
+  background: #2a211b;
+  color: #e0b184;
+  font-family: var(--font-mono);
+  padding: 48px 0 120px;
+  min-height: 100vh;
 }
 
-.title {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 40px;
-  color: var(--text-primary);
+/* CRT 扫描线（纯 CSS，一个固定伪层） */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.22) 0,
+    rgba(0, 0, 0, 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.35;
 }
 
-.empty {
-  text-align: center;
-  padding: 80px 24px;
-  color: var(--text-secondary);
-  font-size: 16px;
-}
-
-.experiment {
-  max-width: 720px;
-  margin: 56px auto 0;
+.inner {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
   padding: 0 24px;
 }
 
-.experimentTitle {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 8px;
+.header {
+  margin: var(--space-6) 0 var(--space-7);
 }
 
-.experimentDesc {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
+.kicker {
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-coral);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ece7df;
+}
+
+.intro {
+  margin-top: var(--space-3);
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(224, 177, 132, 0.8);
+  max-width: 36em;
+}
+
+/* datasheet 实验卡 */
+.exp {
+  border: 1px solid rgba(224, 177, 132, 0.25);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.expHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(224, 177, 132, 0.15);
+  margin-bottom: var(--space-3);
+}
+
+.expId {
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  color: var(--accent-coral);
+}
+
+.expName {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ece7df;
+}
+
+.expParams {
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(224, 177, 132, 0.6);
+}
+
+.expDesc {
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: rgba(224, 177, 132, 0.85);
+  margin-bottom: var(--space-4);
+  max-width: 44em;
+}
+
+@media (max-width: 640px) {
+  .expParams {
+    margin-left: 0;
+    width: 100%;
+  }
 }
