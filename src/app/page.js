@@ -11,8 +11,8 @@ export default function HomePage() {
       <section className={styles.creative}>
         <h2 className={styles.creativeTitle}>✨ 创意小实验</h2>
         <div className={styles.chips}>
-          <Link href="/creative" className={styles.chip}>视觉实验 1</Link>
-          <Link href="/creative" className={styles.chip}>视觉实验 2</Link>
+          <Link href="/creative#terminal" className={styles.chip}>🖥️ 终端影院</Link>
+          <Link href="/creative#magnetic-field" className={styles.chip}>🧲 磁力点阵</Link>
         </div>
       </section>
     </div>

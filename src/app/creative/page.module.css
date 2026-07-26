@@ -17,3 +17,24 @@
   color: var(--text-secondary);
   font-size: 16px;
 }
+
+.experiment {
+  max-width: 720px;
+  margin: 56px auto 0;
+  padding: 0 24px;
+}
+
+.experimentTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.experimentDesc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
