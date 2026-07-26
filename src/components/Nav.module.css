@@ -41,49 +41,61 @@
 }
 
 .link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
   font-size: 14px;
   color: var(--text-secondary);
   text-decoration: none;
   padding: 4px 0;
-  position: relative;
-}
-
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  right: 50%;
-  height: 2px;
-  background: var(--accent-terracotta);
-  border-radius: 1px;
-  transition: left 0.3s ease, right 0.3s ease;
 }
 
 .link:hover {
-  color: var(--accent-terracotta);
+  color: var(--text-primary);
   text-decoration: none;
 }
 
-.link:hover::after {
-  left: 0;
-  right: 0;
+.num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.active .num {
+  color: var(--accent-terracotta-text);
+}
+
+/* 字体瞬切：两层字面叠在同一格，hover 切 opacity（无宽度跳动） */
+.swap {
+  display: inline-grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  transition: opacity var(--dur-fast) steps(1, end);
+}
+
+.wordMono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  opacity: 0;
+  align-self: baseline;
+}
+
+.link:hover .word {
+  opacity: 0;
+}
+
+.link:hover .wordMono {
+  opacity: 1;
 }
 
 .active {
   color: var(--text-primary);
   font-weight: 500;
-}
-
-.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent-terracotta);
-  border-radius: 1px;
 }
 
 /* Hamburger button - hidden on desktop, shown on mobile */
@@ -133,14 +145,47 @@
   flex-direction: column;
   padding: 8px 32px 16px;
   gap: 4px;
+  animation: menuIn var(--dur-base) var(--ease-out);
+}
+
+@keyframes menuIn {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-size: 15px;
   color: var(--text-secondary);
   text-decoration: none;
   padding: 10px 0;
   border-bottom: 1px solid var(--border-cream);
+  animation: itemRise var(--dur-base) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes itemRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenu,
+  .mobileLink {
+    animation: none;
+  }
 }
 
 .mobileLink:last-child {

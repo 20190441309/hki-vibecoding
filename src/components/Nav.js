@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import TransitionLink from './TransitionLink'
 import styles from './Nav.module.css'
 
 const links = [
-  { href: '/guide', label: '指南' },
-  { href: '/workflow', label: '工作流' },
-  { href: '/tools', label: '工具' },
-  { href: '/insights', label: '心得' },
-  { href: '/projects', label: '项目' },
+  { href: '/guide', label: '指南', num: '01' },
+  { href: '/workflow', label: '工作流', num: '02' },
+  { href: '/tools', label: '工具', num: '03' },
+  { href: '/insights', label: '心得', num: '04' },
+  { href: '/projects', label: '项目', num: '05' },
 ]
 
 export default function Nav() {
@@ -33,18 +33,23 @@ export default function Nav() {
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-      <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>⚡ HKI</Link>
+      <TransitionLink href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>⚡ HKI</TransitionLink>
 
       {/* Desktop horizontal links */}
       <div className={styles.desktopLinks}>
-        {links.map(({ href, label }) => (
-          <Link
+        {links.map(({ href, label, num }) => (
+          <TransitionLink
             key={href}
             href={href}
             className={`${styles.link} ${pathname.startsWith(href) ? styles.active : ''}`}
           >
-            {label}
-          </Link>
+            <span className={styles.num}>{num}</span>
+            {/* Obys 式字体瞬切：默认字面与 mono 字面叠放，hover 切 opacity */}
+            <span className={styles.swap}>
+              <span className={styles.word}>{label}</span>
+              <span className={styles.wordMono} aria-hidden="true">./{label}</span>
+            </span>
+          </TransitionLink>
         ))}
       </div>
 
@@ -63,15 +68,17 @@ export default function Nav() {
       {/* Mobile dropdown menu */}
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          {links.map(({ href, label }) => (
-            <Link
+          {links.map(({ href, label, num }, i) => (
+            <TransitionLink
               key={href}
               href={href}
               className={`${styles.mobileLink} ${pathname.startsWith(href) ? styles.mobileLinkActive : ''}`}
+              style={{ '--i': i }}
               onClick={() => setMenuOpen(false)}
             >
+              <span className={styles.num}>{num}</span>
               {label}
-            </Link>
+            </TransitionLink>
           ))}
         </div>
       )}
