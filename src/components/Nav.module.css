@@ -3,11 +3,19 @@
   align-items: center;
   gap: 24px;
   padding: 14px 32px;
-  background: var(--bg-ivory);
-  border-bottom: 1px solid var(--border-cream);
+  background: transparent;
+  border-bottom: 1px solid transparent;
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+}
+
+.scrolled {
+  background: rgba(250, 249, 245, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-cream);
 }
 
 .logo {
@@ -40,9 +48,26 @@
   position: relative;
 }
 
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: var(--accent-terracotta);
+  border-radius: 1px;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
 .link:hover {
   color: var(--accent-terracotta);
   text-decoration: none;
+}
+
+.link:hover::after {
+  left: 0;
+  right: 0;
 }
 
 .active {

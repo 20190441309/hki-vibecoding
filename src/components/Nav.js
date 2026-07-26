@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import styles from './Nav.module.css'
@@ -15,9 +15,23 @@ const links = [
 export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    if (menuOpen) setMenuOpen(false)
+  }, [pathname])
 
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>⚡ HKI</Link>
 
       {/* Desktop horizontal links */}

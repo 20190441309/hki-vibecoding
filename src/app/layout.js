@@ -1,6 +1,8 @@
 import '@/app/globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import SmoothScroll from '@/components/SmoothScroll'
+import PageTransition from '@/components/PageTransition'
 
 export const metadata = {
   title: "HKI's VibeCoding",
@@ -11,9 +13,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="zh-CN">
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Nav />
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   )
