@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Magnetic from './Magnetic'
 import styles from './Footer.module.css'
 
@@ -12,7 +12,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <motion.footer
+    <m.footer
       className={styles.footer}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -34,6 +34,6 @@ export default function Footer() {
         ))}
       </div>
       <p className={styles.copy}>© 2026 · Built with Hki</p>
-    </motion.footer>
+    </m.footer>
   )
 }

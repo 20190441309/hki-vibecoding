@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
 import PageTransition from '@/components/PageTransition'
 import NoiseOverlay from '@/components/NoiseOverlay'
+import MotionProvider from '@/components/MotionProvider'
 
 export const metadata = {
   title: "HKI's VibeCoding",
@@ -18,13 +19,15 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <NoiseOverlay />
-        <SmoothScroll>
-          <Nav />
-          <main>
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-        </SmoothScroll>
+        <MotionProvider>
+          <SmoothScroll>
+            <Nav />
+            <main>
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <Footer />
+          </SmoothScroll>
+        </MotionProvider>
       </body>
     </html>
   )
