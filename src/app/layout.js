@@ -14,8 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="zh-CN">
       <head>
-        {/* 首帧打 .js 标：Reveal 的隐藏初始态只在有 JS 时生效（no-JS/爬虫直接可见） */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* 首帧脚本：打 .js 标（Reveal 门控）+ 恢复主题（防闪烁） */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js');try{var t=localStorage.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark')document.documentElement.dataset.theme='dark'}catch(e){}",
+          }}
+        />
         <link rel="preload" href="/fonts/jbm-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="alternate" type="application/rss+xml" title="HKI's VibeCoding" href="/rss.xml" />
       </head>

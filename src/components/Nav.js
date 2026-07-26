@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import TransitionLink from './TransitionLink'
+import ThemeToggle from './ThemeToggle'
 import styles from './Nav.module.css'
 
 const links = [
@@ -51,6 +52,7 @@ export default function Nav() {
             </span>
           </TransitionLink>
         ))}
+        <ThemeToggle />
       </div>
 
       {/* Mobile hamburger button */}
@@ -80,6 +82,9 @@ export default function Nav() {
               {label}
             </TransitionLink>
           ))}
+          <div className={styles.mobileToggleRow}>
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </nav>

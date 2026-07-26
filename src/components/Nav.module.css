@@ -18,6 +18,14 @@
   border-bottom: 1px solid var(--border-cream);
 }
 
+:global([data-theme='dark']) .scrolled {
+  background: rgba(34, 26, 20, 0.7);
+}
+
+.mobileToggleRow {
+  padding: 12px 0 4px;
+}
+
 .logo {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 18px;
