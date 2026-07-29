@@ -20,7 +20,7 @@
 
 - **Next.js 16**（App Router，`output: 'export'` 纯静态导出）+ React 19
 - **内容架构**：Markdown 驱动——页面内容放在 `content/`，用 gray-matter 解析 frontmatter、remark 渲染正文，加一篇 md 就多一个页面
-- **动效**：Lenis（平滑滚动）、framer-motion（页面过渡）、GSAP（磁吸交互）
+- **动效**：Lenis（平滑滚动）、GSAP（页面过渡帘 / 磁吸 / scramble）
 - **样式**：CSS Modules，Claude 暖色调设计体系（陶土红 + 暖白）
 
 ## 本地开发

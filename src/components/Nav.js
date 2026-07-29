@@ -18,6 +18,12 @@ export default function Nav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // 路由变化时在 render 阶段关闭菜单（避免 effect 里同步 setState）
+  const [menuPath, setMenuPath] = useState(pathname)
+  if (pathname !== menuPath) {
+    setMenuPath(pathname)
+    if (menuOpen) setMenuOpen(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +33,6 @@ export default function Nav() {
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    if (menuOpen) setMenuOpen(false)
-  }, [pathname])
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>

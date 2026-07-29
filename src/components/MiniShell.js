@@ -65,11 +65,17 @@ export default function MiniShell() {
           return
         }
         if (SECTIONS.includes(target)) {
+          // 已在 creative 实验页：只提示，不导航
+          if (target === 'creative') {
+            lines.push(out('你已经在这里了 :)'))
+            setLog((l) => [...l, ...lines])
+            setInput('')
+            return
+          }
           lines.push(out(`→ /${target}`))
           setLog((l) => [...l, ...lines])
           setInput('')
-          if (target !== 'creative') nav(`/${target}`)
-          else lines.push(out('你已经在这里了 :)'))
+          nav(`/${target}`)
           return
         }
         lines.push(out(`no such directory: ${args[0]}（ls 看看有哪些）`))

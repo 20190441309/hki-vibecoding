@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { usePrefersReducedMotion } from '@/lib/motion'
 import styles from './TerminalTyping.module.css'
 
 const script = [
@@ -15,16 +16,14 @@ const script = [
 ]
 
 export default function TerminalTyping() {
+  const reduced = usePrefersReducedMotion()
   const [lines, setLines] = useState([])
   const [current, setCurrent] = useState('')
-  const [reduced, setReduced] = useState(false)
+  const [currentCls, setCurrentCls] = useState(script[0].cls)
   const state = useRef({ line: 0, char: 0 })
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setReduced(true)
-      return
-    }
+    if (reduced) return
     let timer
     const tick = () => {
       const { line, char } = state.current
@@ -34,24 +33,25 @@ export default function TerminalTyping() {
         setCurrent(entry.text.slice(0, char + 1))
         timer = setTimeout(tick, entry.cls === 'user' ? 45 : 18)
       } else if (line < script.length - 1) {
-        state.current = { line: line + 1, char: 0 }
+        const next = line + 1
+        state.current = { line: next, char: 0 }
         setLines((prev) => [...prev, entry])
         setCurrent('')
+        setCurrentCls(script[next].cls)
         timer = setTimeout(tick, entry.delay)
       } else {
         state.current = { line: 0, char: 0 }
         timer = setTimeout(() => {
           setLines([])
           setCurrent('')
+          setCurrentCls(script[0].cls)
           tick()
         }, entry.delay)
       }
     }
     timer = setTimeout(tick, 600)
     return () => clearTimeout(timer)
-  }, [])
-
-  const currentCls = script[state.current.line]?.cls || 'cmd'
+  }, [reduced])
 
   return (
     <div className={styles.terminal} aria-label="模拟的 vibe coding 终端会话">

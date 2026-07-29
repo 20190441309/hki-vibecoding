@@ -1,25 +1,29 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 import styles from './ThemeToggle.module.css'
+
+function subscribeTheme(onChange) {
+  const el = document.documentElement
+  const obs = new MutationObserver(onChange)
+  obs.observe(el, { attributes: true, attributeFilter: ['data-theme'] })
+  return () => obs.disconnect()
+}
+
+function getThemeDark() {
+  return document.documentElement.dataset.theme === 'dark'
+}
 
 // 暖暗色切换：终端 flag 风格按钮（--dark / --light），localStorage 记忆
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setDark(document.documentElement.dataset.theme === 'dark')
-    setMounted(true)
-  }, [])
+  // 订阅 data-theme：SSR 默认 light，挂载后与首帧脚本恢复的主题对齐
+  const dark = useSyncExternalStore(subscribeTheme, getThemeDark, () => false)
 
   const toggle = () => {
-    const next = !dark
-    setDark(next)
-    if (next) document.documentElement.dataset.theme = 'dark'
-    else delete document.documentElement.dataset.theme
+    if (dark) delete document.documentElement.dataset.theme
+    else document.documentElement.dataset.theme = 'dark'
     try {
-      localStorage.theme = next ? 'dark' : 'light'
+      localStorage.theme = dark ? 'light' : 'dark'
     } catch {}
   }
 
@@ -31,7 +35,7 @@ export default function ThemeToggle() {
       aria-label={dark ? '切换到浅色模式' : '切换到深色模式'}
       suppressHydrationWarning
     >
-      {mounted ? (dark ? '--light' : '--dark') : '--dark'}
+      {dark ? '--light' : '--dark'}
     </button>
   )
 }
